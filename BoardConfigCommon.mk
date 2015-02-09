@@ -22,7 +22,10 @@ BOARD_EGL_CFG := device/sony/msm8974-common/rootdir/system/lib/egl/egl.cfg
 include device/sony/qcom-common/BoardConfigCommon.mk
 
 # Kernel properties
-TARGET_KERNEL_SOURCE := kernel/sony/msm8974
+TARGET_KERNEL_SOURCE := kernel/sony/common
+
+# Kernel properties
+TARGET_KERNEL_CONFIG := $(TARGET_PRODUCT)_defconfig
 
 # use CAF variants
 BOARD_USES_QCOM_HARDWARE := true
