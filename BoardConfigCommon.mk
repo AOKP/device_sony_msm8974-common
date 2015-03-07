@@ -15,8 +15,8 @@
 # inherit from Sony common
 include device/sony/common/BoardConfigCommon.mk
 
-# inherit from qcom-common
-include device/sony/qcom-common/BoardConfigCommon.mk
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 
 # use CAF variants
 BOARD_USES_QCOM_HARDWARE := true
@@ -26,10 +26,11 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 TARGET_BOARD_PLATFORM := msm8974
 
 # Architecture
+TARGET_ARCH := arm
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := krait
-
-# RIL
-BOARD_PROVIDES_LIBRIL := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -37,7 +38,14 @@ AUDIO_FEATURE_DISABLED_USBAUDIO := true
 AUDIO_FEATURE_ENABLED_EXTN_POST_PROC := true
 
 # Bionic
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 BOARD_USES_LEGACY_MMAP := true
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+
+# Camera
+TARGET_PROVIDES_CAMERA_HAL := true
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/sony/msm8974-common/cmhw
@@ -46,6 +54,9 @@ BOARD_HARDWARE_CLASS += device/sony/msm8974-common/cmhw
 EXTENDED_FONT_FOOTPRINT := true
 
 # Graphics
+USE_OPENGL_RENDERER := true
+TARGET_USES_ION := true
+TARGET_USES_C2D_COMPOSITION := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
@@ -69,6 +80,14 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Logd
 TARGET_USES_LOGD := false
+
+# Power HAL
+TARGET_POWERHAL_VARIANT := qcom
+CM_POWERHAL_EXTENSION := qcom
+
+# RIL
+BOARD_PROVIDES_LIBRIL := true
+BOARD_RIL_CLASS := ../../../device/sony/msm8974-common/ril/
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
