@@ -1,0 +1,4 @@
+# For /sys/devices/virtual/graphics/fb1/uevent
+allow ueventd sysfs_surfaceflinger:file rw_file_perms;
+
+
